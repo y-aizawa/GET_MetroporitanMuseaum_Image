@@ -32,7 +32,10 @@ def get_objectIDs():
 # In[3]:
 
 
-def get_object(objectID):
+def get_object(objectIDs):
+    # ObjectIDのリストからランダムで一つを選択
+    objectID = random.choice(objectIDs)
+
     # Web APIのURLを定義
     url = 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + str(objectID)
 
@@ -51,11 +54,8 @@ def get_object(objectID):
 
 def get_publicObject(objectIDs):
     while True:
-        # ObjectIDのリストからランダムで一つを選択
-        objectID = random.choice(objectIDs)
-        
-        # 選択したオブジェクトを取得
-        object_ = get_object(objectID)
+        # ランダムで一つのオブジェクトを取得
+        object_ = get_object(objectIDs)
 
         # パブリックドメインだった場合レスポンス
         if object_["isPublicDomain"] == True:
